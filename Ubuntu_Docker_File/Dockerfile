@@ -5,7 +5,7 @@
 FROM ubuntu:latest
 
 # Create a user working directory.
-WORKDIR /usr/docker-container/
+WORKDIR /tmp/
 
 # Setup apt packages.
 RUN apt-get update && \
