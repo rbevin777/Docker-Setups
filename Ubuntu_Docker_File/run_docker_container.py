@@ -47,7 +47,11 @@ class DockerInfo:
 def run_docker_container(image_name, volume_name, image_directory):
     """ Simple program that will run a docker container with a given volume and image. """
     docker_run = DockerInfo(image_name, volume_name, image_directory)
-    docker_run.create_docker_image()
+    try: 
+        docker_run.create_docker_image()
+    except:
+        print("Filed to create docker image. This maybe because docker desktop isn't running.")
+    
     docker_run.check_docker_volume_exists()
     docker_run.share_volume_into_container()
 
