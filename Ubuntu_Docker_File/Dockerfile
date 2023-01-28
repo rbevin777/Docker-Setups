@@ -18,5 +18,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75
 
 # Install tools.
 RUN apt-get install -y neofetch
-
+RUN apt-get install -y nano
+RUN apt-get install -y vim
 
