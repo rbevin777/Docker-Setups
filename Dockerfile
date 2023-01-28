@@ -12,11 +12,13 @@ FROM gcc:latest
 # The first parameter 'main.c' is the name of the file on the host.
 # The second parameter '/' is the path where to put the file on the image.
 # Here we put the file at the image root folder.
-COPY . /usr/src/main.c
-#WORKDIR /usr/src/
+COPY . /usr/dockerfile/src
+WORKDIR /usr/dockerfile/src/
 
 # We need to define the command to launch when we are going to run the image.
 # We use the keyword 'CMD' to do that.
 # The following commands will compile our code and run it to print hello world.
-#RUN "gcc main.c -o main"
-#CMD ["./main"]
+RUN gcc main.c -o main
+
+# CMD is the last command that should be run.
+CMD ["./main"] 
