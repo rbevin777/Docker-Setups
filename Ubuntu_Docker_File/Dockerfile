@@ -5,7 +5,7 @@
 FROM ubuntu:latest
 
 # Create a user working directory.
-WORKDIR /tmp/
+WORKDIR /tmp
 
 # Setup apt packages.
 RUN apt-get update && \
