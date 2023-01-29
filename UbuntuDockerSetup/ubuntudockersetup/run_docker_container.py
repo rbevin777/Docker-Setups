@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import click
 
@@ -14,6 +16,9 @@ class DockerInfo:
             response = os.system(f"docker build -t {self.image_name} .")
         except:
             print(f"Unable build docker image {self.image_name}")
+            response = None
+        
+        return response
             
     def check_docker_volume_exists(self):
         """ Check if a volume exists, if it doesn't then create it, if it does then move on."""
@@ -30,6 +35,8 @@ class DockerInfo:
             print(f"Docker Volume {self.volume_name} exists, skipping creation")
         else:
             os.system(f"docker volume create {self.volume_name}")
+        
+        return exists, response
 
     def share_volume_into_container(self):
         """ Shares our created volume within the same container as the image. """
