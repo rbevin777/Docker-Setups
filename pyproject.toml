@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ubuntudockersetup"
+name = "rundockerfilesetup"
 version = "0.1.0"
 description = ""
 authors = ["Ryan Bevin <bevybizzle@googlemail.com>"]

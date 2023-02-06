@@ -6,14 +6,15 @@ import click
 
 class DockerInfo:
     
-    def __init__(self, image_name, volume_name):
+    def __init__(self, image_name, volume_name, dockerfile_path):
         self.image_name = image_name
         self.volume_name = volume_name
+        self.dockerfile_path = dockerfile_path
     
     def create_docker_image(self):
         """ If one doesn't already exist, we want to create a docker image. """
         try:
-            response = os.system(f"docker build -t {self.image_name} .")
+            response = os.system(f"docker build -f {self.dockerfile_path} -t {self.image_name} .")
         except:
             print(f"Unable build docker image {self.image_name}")
             response = None
@@ -47,11 +48,12 @@ class DockerInfo:
 
     
 @click.command()
-@click.option("--volume_name", default="ubuntu-vol-1", help="Enter a Docker Volume Name")
-@click.option("--image_name", default="ubuntu-img-1", help="Enter a Docker Image Name")
-def run_docker_container(image_name, volume_name):
+@click.option("--volume_name", required=True, help="Enter a Docker Volume Name")
+@click.option("--image_name", required=True, help="Enter a Docker Image Name")
+@click.option("--dockerfile_path", required=True, help="Point the script to a the dockerfile you want to run.")
+def run_docker_container(image_name, volume_name, dockerfile_path):
     """ Simple program that will run a docker container with a given volume and image. """
-    docker_run = DockerInfo(image_name, volume_name)
+    docker_run = DockerInfo(image_name, volume_name, dockerfile_path)
     try: 
         docker_run.create_docker_image()
     except:
